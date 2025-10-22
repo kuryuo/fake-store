@@ -6,14 +6,17 @@ export const api = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://fakestoreapi.com'}),
     tagTypes: ['Products', 'Product'],
     endpoints: (builder) => ({
+        // все продукты
         getAllProducts: builder.query<Product[], void>({
             query: () => 'products',
             providesTags: ['Products']
         }),
+        // продукт по id
         getProductById: builder.query<any, number>({
             query: (id) => `products/${id}`,
             providesTags: (_result, _error, id) => [{type: 'Product', id}]
         }),
+        // новый продукт
         addNewProduct: builder.mutation<any, any>({
             query: (newProduct) => ({
                 url: 'products',
@@ -22,6 +25,7 @@ export const api = createApi({
             }),
             invalidatesTags: ['Products']
         }),
+        // изменение продукта
         updateProduct: builder.mutation<any, any>({
             query: ({id, ...body}) => ({
                 url: `products/${id}`,
@@ -30,6 +34,7 @@ export const api = createApi({
             }),
             invalidatesTags: (_result, _error, {id}) => [{type: 'Product', id}, 'Products'],
         }),
+        // удалить продукт
         deleteProduct: builder.mutation<any, number>({
             query: (id) => ({
                 url: `products/${id}`,
