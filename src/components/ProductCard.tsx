@@ -1,5 +1,5 @@
 import {useGetProductByIdQuery} from "../store/api.ts";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function ProductCard() {
     const {id} = useParams<{ id: string }>();
@@ -19,6 +19,10 @@ function ProductCard() {
             <p>
                 Рейтинг: {product.rating?.rate} ({product.rating?.count} отзывов)
             </p>
+
+            <Link to={`/edit/${product.id}`}>
+                <button>Редактировать</button>
+            </Link>
         </div>
     );
 }
