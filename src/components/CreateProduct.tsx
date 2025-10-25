@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useAddNewProductMutation} from "../store/api.ts";
+import {useAddNewProductMutation} from "../store/productsApi.ts";
 import {useNavigate} from 'react-router-dom';
 
 function CreateProduct() {

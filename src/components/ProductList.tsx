@@ -1,4 +1,4 @@
-import {useGetAllProductsQuery} from "../store/api.ts";
+import {useGetAllProductsQuery} from "../store/productsApi.ts";
 import {useNavigate} from "react-router-dom";
 
 function ProductList() {

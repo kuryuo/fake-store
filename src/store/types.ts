@@ -10,3 +10,9 @@ export interface Product {
         count: number;
     };
 }
+
+export interface Cart {
+    id: number;
+    userId: number;
+    products: Product[];
+}

@@ -1,5 +1,6 @@
-import {useGetProductByIdQuery} from "../store/api.ts";
+import {useGetProductByIdQuery} from "../store/productsApi.ts";
 import {Link, useParams} from "react-router-dom";
+import {Button} from "@/components/ui/button.tsx";
 
 function ProductCard() {
     const {id} = useParams<{ id: string }>();
@@ -21,7 +22,7 @@ function ProductCard() {
             </p>
 
             <Link to={`/edit/${product.id}`}>
-                <button>Редактировать</button>
+                <Button>Click me</Button>
             </Link>
         </div>
     );

@@ -1,8 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import type {Product} from "./types.ts";
 
-export const api = createApi({
-    reducerPath: 'api',
+export const productsApi = createApi({
+    reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://fakestoreapi.com'}),
     tagTypes: ['Products', 'Product'],
     endpoints: (builder) => ({
@@ -27,12 +27,12 @@ export const api = createApi({
         }),
         // изменение продукта
         updateProduct: builder.mutation<any, any>({
-            query: ({id, ...body}) => ({
-                url: `products/${id}`,
+            query: (product) => ({
+                url: `products/${product.id}`,
                 method: 'PUT',
-                body,
+                body: product,
             }),
-            invalidatesTags: (_result, _error, {id}) => [{type: 'Product', id}, 'Products'],
+            invalidatesTags: (_result, _error, product) => [{type: 'Product', id: product.id}, 'Products'],
         }),
         // удалить продукт
         deleteProduct: builder.mutation<any, number>({
@@ -40,7 +40,7 @@ export const api = createApi({
                 url: `products/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Products']
+            invalidatesTags: (_result, _error, id) => [{type: 'Product', id}, 'Products'],
         }),
     })
 });
@@ -51,4 +51,4 @@ export const {
     useAddNewProductMutation,
     useUpdateProductMutation,
     useDeleteProductMutation,
-} = api;
+} = productsApi;

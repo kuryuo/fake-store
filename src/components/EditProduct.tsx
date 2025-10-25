@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
-import {useDeleteProductMutation, useGetProductByIdQuery, useUpdateProductMutation} from "../store/api.ts";
+import {useDeleteProductMutation, useGetProductByIdQuery, useUpdateProductMutation} from "../store/productsApi.ts";
 
 function EditProduct() {
     const navigate = useNavigate();
