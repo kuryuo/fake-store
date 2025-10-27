@@ -14,5 +14,11 @@ export interface Product {
 export interface Cart {
     id: number;
     userId: number;
-    products: Product[];
+    date: string;
+    products: CartProduct[];
+}
+
+export interface CartProduct {
+    productId: number;
+    quantity: number;
 }

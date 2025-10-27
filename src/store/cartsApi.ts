@@ -6,11 +6,11 @@ export const cartsApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://fakestoreapi.com'}),
     tagTypes: ['Carts', 'Cart'],
     endpoints: (builder) => ({
-        getAllCarts: builder.query<Cart, any>({
+        getAllCarts: builder.query<Cart[], void>({
             query: () => 'carts',
             providesTags: ["Carts"]
         }),
-        getCartById: builder.query<Cart, any>({
+        getCartById: builder.query<Cart, number>({
             query: (id) => `carts/${id}`,
             providesTags: (_result, _error, id) => [{type: 'Cart', id}]
         }),
@@ -39,3 +39,11 @@ export const cartsApi = createApi({
         }),
     })
 })
+
+export const {
+    useGetAllCartsQuery,
+    useGetCartByIdQuery,
+    useAddNewCartMutation,
+    useUpdateCartMutation,
+    useDeleteCartMutation,
+} = cartsApi;
